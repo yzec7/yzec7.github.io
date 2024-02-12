@@ -10,7 +10,7 @@
             border: 5px solid #017cff;
             border-radius: 50%;
             margin: 50px auto;
-            background: white;
+            background: #f0f0f0; /* 浅灰色背景 */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -95,9 +95,8 @@
 </body>
 </html>
 
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -109,7 +108,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: #f0f0f0; /* 浅灰色背景 */
   }
   .digital-clock {
     font-family: 'Arial', sans-serif;
@@ -117,7 +116,8 @@
     font-size: 24px;
     padding: 20px;
     border: 2px solid #017cff;
-    border-radius: 10px; /* 圆角边框 */
+    border-radius: 10px;
+    background: #f0f0f0; /* 数字时钟特定的浅灰色背景 */
   }
 </style>
 </head>
@@ -132,24 +132,8 @@ function updateDigitalClock() {
   let minutes = now.getMinutes();
   let seconds = now.getSeconds();
 
-  // 格式化时间，确保每个时间单位至少有两位数字
   hours = hours < 10 ? '0' + hours : hours;
   minutes = minutes < 10 ? '0' + minutes : minutes;
   seconds = seconds < 10 ? '0' + seconds : seconds;
 
-  // 构建显示的字符串
-  const timeString = `${hours}时 ${minutes}分 ${seconds}秒`;
-
-  // 更新页面上的时钟显示
-  document.getElementById('digitalClock').textContent = timeString;
-}
-
-// 设置定时器，每秒更新一次时钟
-setInterval(updateDigitalClock, 1000);
-
-// 初始化时钟
-updateDigitalClock();
-</script>
-
-</body>
-</html>
+  const timeString = `${hours
