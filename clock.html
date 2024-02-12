@@ -1,47 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>实时时钟</title>
+    <title>时钟</title>
     <style>
-        body {
+        .clock {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border: 5px solid #017cff;
+            border-radius: 50%;
+            margin: 50px auto;
+            background: white;
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
+            justify-content: center;
         }
-        #clock {
-            font-size: 48px;
-            font-family: 'Courier New', Courier, monospace;
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            transform-origin: bottom;
+        }
+
+        .hour, .minute, .second {
+            background: #017cff;
+        }
+
+        .hour {
+            width: 6px;
+            height: 50px;
+        }
+
+        .minute {
+            width: 4px;
+            height: 70px;
+        }
+
+        .second {
+            width: 2px;
+            height: 90px;
+            background: red;
+        }
+
+        .number {
+            position: absolute;
+            font-family: Arial, sans-serif;
+            color: #017cff;
+            font-size: 14px;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 <body>
-    <div id="clock">00:00:00</div>
+<div class="clock">
+    <div class="hand hour" id="hourHand"></div>
+    <div class="hand minute" id="minuteHand"></div>
+    <div class="hand second" id="secondHand"></div>
+    <!-- 动态生成数字 -->
+</div>
 
-    <script>
-        function updateClock() {
-            const now = new Date();
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            let seconds = now.getSeconds();
+<script>
+    const clock = document.querySelector('.clock');
+    for(let i = 1; i <= 12; i++){
+        let number = document.createElement('div');
+        number.className = 'number';
+        let angle = i * 30; // 每个数字之间有30度
+        let radian = angle * Math.PI / 180; // 转换为弧度
+        // 计算位置
+        number.style.left = `${50 + 40 * Math.sin(radian)}%`;
+        number.style.top = `${50 - 40 * Math.cos(radian)}%`;
+        number.textContent = i;
+        clock.appendChild(number);
+    }
 
-            // Format the time to display two digits
-            hours = hours < 10 ? '0' + hours : hours;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
+    function updateClock() {
+        const now = new Date();
+        const second = now.getSeconds();
+        const minute = now.getMinutes();
+        const hour = now.getHours();
 
-            // Display the time
-            document.getElementById('clock').innerText = hours + ':' + minutes + ':' + seconds;
-        }
+        const secondDegree = ((second / 60) * 360) + 90;
+        const minuteDegree = ((minute / 60) * 360) + ((second / 60) * 6) + 90;
+        const hourDegree = ((hour / 12) * 360) + ((minute / 60) * 30) + 90;
 
-        // Update the clock every second
-        setInterval(updateClock, 1000);
+        document.getElementById('secondHand').style.transform = `rotate(${secondDegree}deg)`;
+        document.getElementById('minuteHand').style.transform = `rotate(${minuteDegree}deg)`;
+        document.getElementById('hourHand').style.transform = `rotate(${hourDegree}deg)`;
 
-        // Initialize the clock
-        window.onload = updateClock;
-    </script>
+        requestAnimationFrame(updateClock);
+    }
+
+    requestAnimationFrame(updateClock);
+</script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>居中的数字时钟</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+  }
+  .digital-clock {
+    font-family: 'Arial', sans-serif;
+    color: #017cff;
+    font-size: 24px;
+    padding: 20px;
+    border: 2px solid #017cff;
+    border-radius: 10px; /* 圆角边框 */
+  }
+</style>
+</head>
+<body>
+
+<div id="digitalClock" class="digital-clock">加载中...</div>
+
+<script>
+function updateDigitalClock() {
+  const now = new Date();
+  let hours = now.getHours();
+  let minutes = now.getMinutes();
+  let seconds = now.getSeconds();
+
+  // 格式化时间，确保每个时间单位至少有两位数字
+  hours = hours < 10 ? '0' + hours : hours;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+
+  // 构建显示的字符串
+  const timeString = `${hours}时 ${minutes}分 ${seconds}秒`;
+
+  // 更新页面上的时钟显示
+  document.getElementById('digitalClock').textContent = timeString;
+}
+
+// 设置定时器，每秒更新一次时钟
+setInterval(updateDigitalClock, 1000);
+
+// 初始化时钟
+updateDigitalClock();
+</script>
+
 </body>
 </html>
