@@ -13,3 +13,20 @@
 ecgsqydy1622
 ### 快手
 ecgsyzec7
+## 国外&海外（中国大陆境外）平台
+### YouTube
+杨至（@ecgg_blog）
+### TikTok
+@yzec7
+## E-Mail（邮箱）
+### QQ Mail
+512163929@qq.com
+2070346615@qq.com
+### Gmail
+ecgsqyyf@gmail.com
+# 博客&网站（除本站）
+eai.family.blog
+eai.art.blog
+tiziai.wordpress.com
+x0xchbklups.feishu.cn/docx/CsFDdyNssoFkG5xUK10cjKQ5nDe
+# END!
