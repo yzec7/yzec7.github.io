@@ -1,4 +1,6 @@
 # yzec7.github.io
+![logo](https://raw.githubusercontent.com/yzec7/yzec7.github.io/main/Yzec7%E7%9A%84%E5%8D%9A%E5%AE%A2logo.png)
+
 这是Yzec7（我）的博客，我会在这个描述文件提供信息！
 # 社交媒体账号
 ### CSDN
