@@ -3,4 +3,4 @@
 # 适用人群
 创建者&管理员
 # 许可证
-MIT
+{MIT}(https://github.com/yzec7/yzec7.github.io/blob/main/LICENSE)
