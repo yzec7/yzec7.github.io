@@ -10,6 +10,7 @@
     height: 100%;
     margin: 0;
     display: flex;
+    flex-direction: column; /* 改变flex布局的方向为垂直 */
     justify-content: center;
     align-items: center;
     background-color: #336699;
@@ -17,45 +18,54 @@
   .digital-clock {
     font-family: 'Arial', sans-serif;
     color: #FFFFFF;
-    font-size: 96px;
-    padding: 80px;
+    font-size: 48px; /* 调整字体大小以适应更多内容 */
+    padding: 40px;
     border: 8px solid #FFFFFF;
-    border-radius: 40px; /* 圆角边框 */
+    border-radius: 20px; /* 调整圆角边框 */
+    margin-top: 20px; /* 添加上边距 */
   }
 </style>
 </head>
 <body>
   <div style="text-align: center;">
-  <img src="/Yzec7的博客logo.png" alt="wslogo">
-</div>
+    <img src="/Yzec7的博客logo.png" alt="wslogo" style="margin-bottom: 20px;"> <!-- 添加下边距 -->
+  </div>
 
-<div id="digitalClock" class="digital-clock">加载中...</div>
+  <div id="digitalClock" class="digital-clock">加载中...</div>
 
-<script>
-function updateDigitalClock() {
-  const now = new Date();
-  let hours = now.getHours();
-  let minutes = now.getMinutes();
-  let seconds = now.getSeconds();
+  <script>
+  function updateDigitalClock() {
+    const now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1; // JavaScript 中月份从0开始计数
+    let date = now.getDate();
+    let day = now.getDay(); // 星期几
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+    const weekDays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
 
-  // 格式化时间，确保每个时间单位至少有两位数字
-  hours = hours < 10 ? '0' + hours : hours;
-  minutes = minutes < 10 ? '0' + minutes : minutes;
-  seconds = seconds < 10 ? '0' + seconds : seconds;
+    // 格式化时间，确保每个时间单位至少有两位数字
+    month = month < 10 ? '0' + month : month;
+    date = date < 10 ? '0' + date : date;
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
 
-  // 构建显示的字符串
-  const timeString = `${hours}时 ${minutes}分 ${seconds}秒`;
+    // 构建显示的字符串，包括年月日和星期
+    const dateString = `${year}年 ${month}月 ${date}日 ${weekDays[day]}`;
+    const timeString = `${hours}时 ${minutes}分 ${seconds}秒`;
 
-  // 更新页面上的时钟显示
-  document.getElementById('digitalClock').textContent = timeString;
-}
+    // 更新页面上的时钟显示
+    document.getElementById('digitalClock').textContent = dateString + " " + timeString;
+  }
 
-// 设置定时器，每秒更新一次时钟
-setInterval(updateDigitalClock, 1000);
+  // 设置定时器，每秒更新一次时钟
+  setInterval(updateDigitalClock, 1000);
 
-// 初始化时钟
-updateDigitalClock();
-</script>
+  // 初始化时钟
+  updateDigitalClock();
+  </script>
 
 </body>
 </html>
