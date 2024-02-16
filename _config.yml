@@ -6,6 +6,14 @@ url: "http://yzec7.github.io" # 网站的URL
 github_username:  yzec7
 
 # 构建设置
-theme: minima # 使用的主题
+markdown: kramdown         # Markdown 解析器
+theme: minima              # 使用的 Jekyll 主题
 plugins:
-  - jekyll-feed # 示例插件
+  - jekyll-feed            # 使用的插件，例如 jekyll-feed
+
+# Jekyll 主题或插件的其他配置
+minima:
+  skin: dark               # 主题特定的配置，例如 Minima 主题的皮肤颜色
+
+# 自定义构建目录（可选）
+destination: ./_site       # Jekyll 构建网站的输出目录
