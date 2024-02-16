@@ -1,11 +1,9 @@
-title: 我的网站标题
-email: your-email@example.com
-description: >- # 这里是你网站的描述
-  这是我的个人GitHub Pages网站。
+title: Yzec7的博客
+email: ecgsqyyf@gmail.com
+description: 杨至的博客。 # 这里是你网站的描述
 baseurl: "" # 项目的基本路径，如果你的站点放在根目录下，则留空
-url: "http://username.github.io" # 网站的URL
-twitter_username: your_twitter # 可选
-github_username:  your_github_username
+url: "http://yzec7.github.io" # 网站的URL
+github_username:  yzec7
 
 # 构建设置
 theme: minima # 使用的主题
