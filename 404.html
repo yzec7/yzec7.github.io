@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面找不到了 - YourSiteName</title>
+    <link rel="icon" href="/path/to/your/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            background-color: #336699;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .logo {
+            margin: 20px;
+        }
+        h1 {
+            color: white;
+        }
+        p {
+            color: white;
+        }
+        a {
+            color: #FFD700;
+        }
+        #countdown {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var countdownNumber = 3;
+            var countdownElement = document.createElement('p');
+            countdownElement.setAttribute('id', 'countdown');
+            countdownElement.textContent = '页面将在 ' + countdownNumber + ' 秒后自动跳转到首页...';
+            document.body.appendChild(countdownElement);
+
+            var interval = setInterval(function() {
+                countdownNumber--;
+                countdownElement.textContent = '页面将在 ' + countdownNumber + ' 秒后自动跳转到首页...';
+                if (countdownNumber <= 0) {
+                    clearInterval(interval);
+                    window.location.href = '/'; // 这里设置你想要跳转的URL
+                }
+            }, 1000);
+        });
+    </script>
+</head>
+<body>
+    <div class="logo">
+        <img src="/path/to/your/logo.png" alt="Your Logo" width="200">
+    </div>
+    <h1>哎呀，页面不见了！</h1>
+    <p>我们找不到您要找的页面。可能是链接错误或页面已被移除。</p>
+    <p>试试<a href="/">返回首页</a>吧。</p>
+</body>
+</html>
