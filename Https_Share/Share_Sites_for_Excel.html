@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>HTTP状态码</title>
+<style>
+    body {
+        background-color: #336699;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    h1 {
+        text-align: center;
+    }
+    .status-code {
+        font-style: italic;
+    }
+    table {
+        margin: 0 auto;
+        text-align: center;
+    }
+    th, td {
+        padding: 15px;
+    }
+    .site-icon {
+        width: 209px;
+        height: 209px;
+        vertical-align: middle;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <img src="site-icon.png" alt="网站图标" class="site-icon">
+        <h1>HTTP状态码</h1>
+    </header>
+    <table>
+        <tr>
+            <th>状态码</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+            <td>200</td>
+            <td class="status-code">成功</td>
+        </tr>
+        <tr>
+            <td>404</td>
+            <td class="status-code">未找到</td>
+        </tr>
+        <!-- 添加更多状态码和描述 -->
+    </table>
+    <!-- 使用左右箭头进行页面切换的JavaScript代码（示例） -->
+    <script>
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "ArrowLeft") {
+                // 前往上一个状态码页面
+            }
+            if (event.key === "ArrowRight") {
+                // 前往下一个状态码页面
+            }
+        });
+    </script>
+</body>
+</html>
