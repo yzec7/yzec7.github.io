@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>受保护的内容</title>
+    <script>
+        // 获取cookie的函数
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        // 检查是否有访问权限的函数
+        function checkAccess() {
+            var accessGranted = getCookie("accessGranted"); // 获取cookie来检查是否已授权访问
+            if (accessGranted != "true") {
+                window.location.href = "index.html"; // 如果未授权，重定向回密码输入页面
+            }
+        }
+
+        checkAccess(); // 调用函数以确保只有通过验证的用户才能看到内容
+    </script>
+</head>
+<body>
+    <h1>受保护的内容</h1>
+    <p>这部分内容受到保护。恭喜你输入了正确的秘密词！</p>
+</body>
+</html>
