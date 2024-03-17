@@ -2,11 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABC Page</title>
+    <title>Protected Page</title>
+    <script>
+        // 检查cookie以确认是否已验证
+        function checkCookie() {
+            let user = getCookie("verified");
+            if (user != "") {
+                // 用户已验证
+                alert("Welcome again " + user);
+            } else {
+                // 用户未验证，提示输入密码
+                user = prompt("Please enter your password:", "");
+                if (user != null && user == "yourpassword") {
+                    // 密码正确，设置cookie
+                    setCookie("verified", user, 30); // 30天后过期
+                    alert("Password correct!");
+                } else {
+                    // 密码错误或未输入密码，重定向或显示错误信息
+                    window.location.href = 'https://google.com'; // 重定向到其他页面
+                }
+            }
+        }
+
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        window.onload = function() {
+            checkCookie();
+        };
+    </script>
 </head>
 <body>
-    <h1>Welcome to the ABC Page</h1>
-    <p>This is a new page on my GitHub Pages website.</p>
+    <h1>Welcome to My Protected Page</h1>
+    <p>If you see this message, you have entered the correct password.</p >
 </body>
 </html>
