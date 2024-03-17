@@ -1,59 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Protected Page</title>
-    <script>
-        // 检查cookie以确认是否已验证
-        function checkCookie() {
-            let user = getCookie("verified");
-            if (user != "") {
-                // 用户已验证
-                alert("Welcome again " + user);
-            } else {
-                // 用户未验证，提示输入密码
-                user = prompt("Please enter your password:", "");
-                if (user != null && user == "yourpassword") {
-                    // 密码正确，设置cookie
-                    setCookie("verified", user, 30); // 30天后过期
-                    alert("Password correct!");
-                } else {
-                    // 密码错误或未输入密码，重定向或显示错误信息
-                    window.location.href = 'https://google.com'; // 重定向到其他页面
-                }
-            }
+    <title>密码输入</title>
+    <style>
+        /* 设置背景颜色、文字颜色、字体以及文本居中 */
+        body {
+            background-color: #336699; /* 背景色 */
+            color: white; /* 文字颜色 */
+            font-family: Arial, sans-serif; /* 字体 */
+            text-align: center; /* 居中文本 */
+            padding-top: 100px; /* 顶部填充 */
         }
+        /* 输入框样式 */
+        input[type="text"] {
+            margin-top: 20px; /* 上边距 */
+            padding: 10px; /* 内填充 */
+            border-radius: 5px; /* 边框圆角 */
+            border: 1px solid #fff; /* 边框颜色 */
+            text-align: center; /* 文本居中 */
+        }
+        /* 按钮样式 */
+        button {
+            padding: 10px 20px; /* 内填充 */
+            margin-top: 20px; /* 上边距 */
+            border-radius: 5px; /* 边框圆角 */
+            border: none; /* 无边框 */
+            background-color: #fff; /* 背景颜色 */
+            color: #336699; /* 文字颜色 */
+            cursor: pointer; /* 鼠标指针变为手形 */
+        }
+        /* 标题样式 */
+        h1 {
+            margin-bottom: 50px; /* 下边距 */
+        }
+    </style>
+</head>
+<body>
+    <h1>宝宝名字？</h1>
+    <input type="text" id="answer" placeholder="XWY">
+    <button onclick="checkAnswer()">提交</button>
 
+    <script>
+        // 设置cookie的函数
         function setCookie(cname, cvalue, exdays) {
-            const d = new Date();
+            var d = new Date();
             d.setTime(d.getTime() + (exdays*24*60*60*1000));
-            let expires = "expires="+ d.toUTCString();
+            var expires = "expires="+ d.toUTCString();
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         }
 
-        function getCookie(cname) {
-            let name = cname + "=";
-            let decodedCookie = decodeURIComponent(document.cookie);
-            let ca = decodedCookie.split(';');
-            for(let i = 0; i <ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
+        // 检查答案是否正确的函数
+        function checkAnswer() {
+            var answer = document.getElementById("answer").value; // 获取用户输入的答案
+            var correctAnswer = "secret"; // 正确的答案，需要被替换为实际的秘密词
 
-        window.onload = function() {
-            checkCookie();
-        };
+            if(answer.toLowerCase() === correctAnswer.toLowerCase()) {
+                setCookie("accessGranted", "true", 1); // 如果答案正确，设置cookie并有效期为1天
+                window.location.href = "content.html"; // 重定向到受保护的内容页面
+            } else {
+                alert("答案错误，请重试。"); // 答案错误时弹出提示
+            }
+        }
     </script>
-</head>
-<body>
-    <h1>Welcome to My Protected Page</h1>
-    <p>If you see this message, you have entered the correct password.</p >
 </body>
 </html>
