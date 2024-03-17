@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>密码输入</title>
+    <!-- 视口元标签，用于确保页面在不同设备上正确缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         /* 设置背景颜色、文字颜色、字体以及文本居中 */
         body {
@@ -18,6 +20,8 @@
             border-radius: 5px; /* 边框圆角 */
             border: 1px solid #fff; /* 边框颜色 */
             text-align: center; /* 文本居中 */
+            width: 80%; /* 宽度为父容器的80% */
+            max-width: 500px; /* 最大宽度限制 */
         }
         /* 按钮样式 */
         button {
@@ -28,10 +32,18 @@
             background-color: #fff; /* 背景颜色 */
             color: #336699; /* 文字颜色 */
             cursor: pointer; /* 鼠标指针变为手形 */
+            width: 80%; /* 宽度为父容器的80% */
+            max-width: 300px; /* 最大宽度限制 */
         }
         /* 标题样式 */
         h1 {
             margin-bottom: 50px; /* 下边距 */
+        }
+        /* 使用媒体查询针对较小屏幕调整上边距 */
+        @media (max-width: 600px) {
+            body {
+                padding-top: 50px; /* 在屏幕宽度小于600px时，减小顶部填充 */
+            }
         }
     </style>
 </head>
@@ -41,7 +53,7 @@
     <button onclick="checkAnswer()">提交</button>
 
     <script>
-        // 设置cookie的函数
+        // JavaScript代码保持不变
         function setCookie(cname, cvalue, exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -49,16 +61,15 @@
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         }
 
-        // 检查答案是否正确的函数
         function checkAnswer() {
-            var answer = document.getElementById("answer").value; // 获取用户输入的答案
-            var correctAnswer = "邢威远"; // 正确的答案，需要被替换为实际的秘密词
+            var answer = document.getElementById("answer").value;
+            var correctAnswer = "邢威远";
 
-           if(answer.toLowerCase() === correctAnswer.toLowerCase()) {
-    setCookie("accessGranted", "true", 1); // 如果答案正确，设置cookie并有效期为1天
-    window.location.href = "https://xwy.p2.blog/"; // 重定向到Google的主页
+            if(answer.toLowerCase() === correctAnswer.toLowerCase()) {
+                setCookie("accessGranted", "true", 1);
+                window.location.href = "https://xwy.p2.blog/";
             } else {
-                alert("答案错误，请重试。"); // 答案错误时弹出提示
+                alert("答案错误，请重试。");
             }
         }
     </script>
