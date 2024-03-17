@@ -54,9 +54,9 @@
             var answer = document.getElementById("answer").value; // 获取用户输入的答案
             var correctAnswer = "邢威远"; // 正确的答案，需要被替换为实际的秘密词
 
-            if(answer.toLowerCase() === correctAnswer.toLowerCase()) {
-                setCookie("accessGranted", "true", 1); // 如果答案正确，设置cookie并有效期为1天
-                window.location.href = "content.html"; // 重定向到受保护的内容页面
+           if(answer.toLowerCase() === correctAnswer.toLowerCase()) {
+    setCookie("accessGranted", "true", 1); // 如果答案正确，设置cookie并有效期为1天
+    window.location.href = "https://google.com"; // 重定向到Google的主页
             } else {
                 alert("答案错误，请重试。"); // 答案错误时弹出提示
             }
